@@ -47,6 +47,7 @@ Future<void> main() async {
   logHelper.showSuccess(categories, title: 'Categories');
 
   // * Get all products by category
+  if (categories.isEmpty) return;
   final productsByCategoryResult = await controller.getProductsByCategory(
     categories[0].name,
   );
@@ -56,6 +57,7 @@ Future<void> main() async {
   logHelper.showSuccess(products, title: 'Products By Category');
 
   // * Get info about product
+  if (products.isEmpty) return;
   final productResult = await controller.getProductDetail(products[0].id);
   if (productResult.isLeft()) return;
   final product = productResult.getOrElse(() => Product.empty());

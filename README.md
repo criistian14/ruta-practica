@@ -18,7 +18,33 @@ Bienvenido a **Fake Store Client**, una aplicación en Dart que consulta datos d
 ## Estructura de carpetas
 
 Se decidio usar **clean architecture** para el desarrollo de esta aplicación ya que facilita los test y el orden en el codigo separando responsabilidades.
+Por lo cual tendria la siguiente estructura:
 
+- **Domain**: Definimos la logica de negocio pura.
+- **Infrastructure**: Implementaciones de como se va a realizar y con que librerias se van a realizar.
+  - **Errors**: Definición de los errores posibles.
+  - **Helpers**: Utilidades y funciones auxiliares que facilitan tareas comunes como las peticiones HTTP, el registro de logs y la verificación de la conectividad de red
+
+
+### Manejo de errores
+
+![error de ejemplo](assets_documentation/error.png)
+
+Para el manejo de errores, se utilizan clases específicas que implementan Exception y se controlan utilizando la librería dartz. 
+Los errores definidos son:
+
+- **NoInternetConnectionError**: Antes de realizar la peticion se valida si se tiene conexion a internet.
+- **ConnectionTimeoutError**: Cuando la peticion toma mas tiempo del estimado (50 seg)
+- **EmptyDataError**: Cuando se espera que un endpoint retorne datos, pero devuelve null.
+- **EndPointError**: Cualquier error que no este relacionado a los anteriores, por ejemplo un 401 o algo asi. 
+
+### Helpers
+
+Se han creado helpers para facilitar el desarrollo sin depender de librerías externas
+
+- **client_helper**: Para realizar peticiones HTTP usando Dio.
+- **log_helper**: Para mostrar mensajes en la consola usando Talker.
+- **network_helper**: Para verificar la conectividad a internet.
 
 ---
 

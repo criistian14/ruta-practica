@@ -18,7 +18,8 @@ class ConnectionTimeoutError implements Exception {
 
   @override
   String toString() {
-    return 'Ups, parece que tomo mas tiempo del previsto ($time seg)';
+    return 'Ups, parece que tomo mas tiempo del previsto ($time seg) '
+        '- $endpoint';
   }
 }
 

@@ -232,7 +232,8 @@ void main() {
         // assert
         verify(() => mockNetworkHelper.isConnected).called(1);
         verifyNever(
-            () => mockProductRemoteDataSource.getProductsByCategory(''));
+          () => mockProductRemoteDataSource.getProductsByCategory(''),
+        );
         expect(result, isA<Left<Exception, List<Product>>>());
         expect(
           result,
