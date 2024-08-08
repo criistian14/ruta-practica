@@ -43,7 +43,7 @@ Los errores definidos son:
 Se han creado helpers para facilitar el desarrollo sin depender de librerías externas
 
 - **client_helper**: Para realizar peticiones HTTP usando Dio.
-- **log_helper**: Para mostrar mensajes en la consola usando Talker.
+- **log_helper**: Para mostrar mensajes en la consola.
 - **network_helper**: Para verificar la conectividad a internet.
 
 ---
@@ -56,7 +56,6 @@ Esta aplicación utiliza una variedad de librerías para mejorar su funcionalida
 
 - **dartz**: Control de errores.
 - **dio**: Una potente librería de HTTP cliente para Dart, utilizada para realizar solicitudes a la API.
-- **talker**: Visualizar de manera facil los mensajes mostrados en consola.
 
 ---
 
@@ -70,7 +69,7 @@ Esta aplicación utiliza una variedad de librerías para mejorar su funcionalida
 
 2. **Instalar dependencias**:
    ```bash
-   flutter pub get
+   dart pub get
    ```
 3. **Ejecutar la aplicación**:
    ```bash

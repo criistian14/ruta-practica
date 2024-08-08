@@ -1,4 +1,4 @@
-import 'package:talker/talker.dart';
+// ignore_for_file: avoid_print
 
 abstract class LogHelper {
   const LogHelper();
@@ -8,15 +8,30 @@ abstract class LogHelper {
 }
 
 class LogHelperImpl extends LogHelper {
-  const LogHelperImpl({
-    required Talker talker,
-  }) : _talker = talker;
+  const LogHelperImpl();
 
-  final Talker _talker;
+  static const String _red = '\x1B[31m';
+  static const String _green = '\x1B[32m';
+  static const String _bold = '\x1B[1m';
+  static const String _noBold = '\x1B[22m';
+  static const String _reset = '\x1B[0m';
+
+  String get _getDivider => '_' * 80;
+
+  String _formatTime(DateTime time) {
+    final minute = time.minute < 9 ? '0${time.minute}' : time.minute;
+    final second = time.second < 9 ? '0${time.second}' : time.second;
+
+    return '${time.hour}:$minute:$second ${time.millisecond}ms';
+  }
 
   @override
   void showError(Exception error) {
-    _talker.error(error);
+    final now = DateTime.now();
+
+    print('$_red $_getDivider \n\n'
+        '  $_bold[Error]$_noBold | ${_formatTime(now)} | '
+        '$error \n $_getDivider $_reset');
   }
 
   @override
@@ -24,25 +39,10 @@ class LogHelperImpl extends LogHelper {
     Object message, {
     String? title,
   }) {
-    final messageText = message.toString();
+    final now = DateTime.now();
 
-    _talker.logTyped(
-      _CustomSuccessLogTalker(messageText, maybeTitle: title ?? 'Success'),
-    );
+    print('$_green $_getDivider \n\n'
+        '  $_bold[${title ?? 'Success'}]$_noBold | ${_formatTime(now)} | '
+        '$message \n $_getDivider $_reset');
   }
-}
-
-class _CustomSuccessLogTalker extends TalkerLog {
-  _CustomSuccessLogTalker(
-    super.message, {
-    required this.maybeTitle,
-  });
-
-  final String maybeTitle;
-
-  @override
-  String get title => maybeTitle;
-
-  @override
-  AnsiPen get pen => AnsiPen()..xterm(121);
 }

@@ -1,12 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:fake_store_client/src/domain/controllers/controller_impl.dart';
-import 'package:talker/talker.dart';
-
 import 'src/domain/domain.dart';
 import 'src/infrastructure/infrastructure.dart';
 
 Future<void> main() async {
-  final logHelper = LogHelperImpl(talker: Talker());
+  const logHelper = LogHelperImpl();
 
   // ? Init Data Sources
   final client = Dio();
