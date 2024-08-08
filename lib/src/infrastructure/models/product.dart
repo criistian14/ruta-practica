@@ -18,7 +18,7 @@ class ProductModel {
         price: double.tryParse(json['price'].toString()) ?? 0,
         description: json['description']?.toString(),
         category: CategoryModel(name: json['category'].toString()),
-        image: json['description']?.toString(),
+        image: json['image']?.toString(),
         rating: json['rating'] is Map<String, dynamic>
             ? RatingModel.fromJson(
                 json['rating'] as Map<String, dynamic>,
